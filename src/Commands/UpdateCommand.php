@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace Risentang\Modules\Commands;
 
 use Illuminate\Console\Command;
-use Nwidart\Modules\Traits\ModuleCommandTrait;
+use Risentang\Modules\Traits\ModuleCommandTrait;
 use Symfony\Component\Console\Input\InputArgument;
 
 class UpdateCommand extends Command
@@ -29,25 +29,7 @@ class UpdateCommand extends Command
      */
     public function handle()
     {
-        $name = $this->argument('module');
-
-        if ($name) {
-            $this->updateModule($name);
-
-            return;
-        }
-
-        /** @var \Nwidart\Modules\Module $module */
-        foreach ($this->laravel['modules']->getOrdered() as $module) {
-            $this->updateModule($module->getName());
-        }
-    }
-
-    protected function updateModule($name)
-    {
-        $this->line('Running for module: <info>' . $name . '</info>');
-
-        $this->laravel['modules']->update($name);
+        $this->laravel['modules']->update($name = $this->getModuleName());
 
         $this->info("Module [{$name}] updated successfully.");
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace Risentang\Modules\Commands;
 
 use Illuminate\Support\Str;
-use Nwidart\Modules\Support\Config\GenerateConfigReader;
-use Nwidart\Modules\Support\Stub;
-use Nwidart\Modules\Traits\ModuleCommandTrait;
+use Risentang\Modules\Support\Config\GenerateConfigReader;
+use Risentang\Modules\Support\Stub;
+use Risentang\Modules\Traits\ModuleCommandTrait;
 use Symfony\Component\Console\Input\InputArgument;
 
 class PolicyMakeCommand extends GeneratorCommand

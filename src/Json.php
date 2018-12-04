@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules;
+namespace Risentang\Modules;
 
 use Illuminate\Filesystem\Filesystem;
-use Nwidart\Modules\Exceptions\InvalidJsonException;
+use Risentang\Modules\Exceptions\InvalidJsonException;
 
 class Json
 {

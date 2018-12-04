@@ -1,91 +1,8 @@
 # Changelog
 
-All Notable changes to `laravel-modules` will be documented in this file.
+All Notable changes to `lumen-modules` will be documented in this file.
 
 ## Next
-
-## 4.0.0 - 2018-09-30
-
-### Added
-
-- New way of handling routes by default using a RouteServiceProvider (instead of start.php)
-- Laravel 5.7 support
-
-### Changed
-
-- Allow class resolution on short name and abstract
-- `module:seed` accepts a `--class` option
-
-## 3.3.1 - 2018-07-13
-
-### Changed
-
-- Added the ability to set a sub-namespace to controllers `module:make-controller Api\\TestController`
-
-## 3.3.0 - 2018-06-21
-
-### Changed
-
-- `module:update` command has now the possibility to update all modules at once
-- Fixing commented code for Laravel Mix
-
-## 3.2.0 - 2018-04-16
-
-### Added
-
-- Added possibility to update all modules at once if any not specified (PR #523)
-
-### Changed
-
-- Mix: Fix css relative urls by changing the route folder (PR #521)
-- Mix: Prevents every build from deleting previous Mix config file (PR #521)
-
-## 3.1.0 - 2018-04-01
-
-### Added
-
-- Laravel mix configuration (https://nwidart.com/laravel-modules/v3/basic-usage/compiling-assets)
-
-### Changed
-
-- Allow symlinks in module path
-- Returns the parameter `--class` to the `SeedCommand`.
-- Generate folders recursively
-- Removing link that has become a 404
-- Fixed seed command exception typehint
-
-### Removed
-
-- Removed the optimize command on the `module:make-migration` command
-
-## 3.0.1 - 2018-02-16
-
-### Changed
-
-- Update publish commands to use the new API to get all enabled modules (PR #483 )
-
-## 3.0.0 - 2018-02-14
-
-## Added
-
-- Added support for laravel 5.6
-- Using phpunit 7
-
-## Changed
-
-- **BC:** `Repository` class: renamed `enabled` to `allEnabled`
-- **BC:** `Repository` class: renamed `disabled` to `allDisabled`
-- **BC:** `Repository` class: renamed `active` to `enabled`
-- **BC:** `Repository` class: renamed `notActive` to `disabled`
-
-## Removed
-
-- Dropped php 7.0 support
-- **BC:** `Module` class: Deprecated `active()` method, use `enabled()`
-- **BC:** `Module` class: Deprecated `notActive()` method, use `disabled()`
-- **BC:** `Repository` class: Deprecated `addPath()` method, use `addLocation()`
-- **BC:** `Repository` class: Deprecated `get()` method, use `find()`
-- **BC:** `Repository` class: Deprecated `getUsed()` method, use `getUsedNow()`
 
 
 ## 2.7.0 - 2018-01-13
@@ -119,7 +36,7 @@ All Notable changes to `laravel-modules` will be documented in this file.
 ## Changed
 
 - added config_path helper to helpers for Lumen support
-- updated readme on how to install laravel-modules in Lumen
+- updated readme on how to install lumen-modules in Lumen
 
 ## 2.5.0 - 2017-10-03
 
@@ -428,7 +345,7 @@ All Notable changes to `laravel-modules` will be documented in this file.
 
 ### Fixed
 
-- Module generation namespace now works with `StudlyCase` ([Issue #14](https://github.com/nWidart/laravel-modules/issues/14))
+- Module generation namespace now works with `StudlyCase` ([Issue #14](https://github.com/nWidart/lumen-modules/issues/14))
 - No module namespace fix (#13)
 
 ### Changed

@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace Risentang\Modules\Commands;
 
-use Nwidart\Modules\Support\Config\GenerateConfigReader;
-use Nwidart\Modules\Support\Stub;
-use Nwidart\Modules\Traits\ModuleCommandTrait;
+use Risentang\Modules\Support\Config\GenerateConfigReader;
+use Risentang\Modules\Support\Stub;
+use Risentang\Modules\Traits\ModuleCommandTrait;
 use Symfony\Component\Console\Input\InputArgument;
 
 class RouteProviderMakeCommand extends GeneratorCommand
@@ -49,13 +49,11 @@ class RouteProviderMakeCommand extends GeneratorCommand
         $module = $this->laravel['modules']->findOrFail($this->getModuleName());
 
         return (new Stub('/route-provider.stub', [
-            'NAMESPACE'        => $this->getClassNamespace($module),
-            'CLASS'            => $this->getFileName(),
+            'NAMESPACE'         => $this->getClassNamespace($module),
+            'CLASS'             => $this->getFileName(),
             'MODULE_NAMESPACE' => $this->laravel['modules']->config('namespace'),
             'MODULE'           => $this->getModuleName(),
-            'WEB_ROUTES_PATH'  => $this->getWebRoutesPath(),
-            'API_ROUTES_PATH'  => $this->getApiRoutesPath(),
-            'LOWER_NAME'       => $module->getLowerName(),
+            'ROUTES_PATH'   => $this->getRoutesPath(),
         ]))->render();
     }
 
@@ -84,17 +82,9 @@ class RouteProviderMakeCommand extends GeneratorCommand
     /**
      * @return mixed
      */
-    protected function getWebRoutesPath()
+    protected function getRoutesPath()
     {
-        return '/' . $this->laravel['config']->get('stubs.files.routes', 'Routes/web.php');
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getApiRoutesPath()
-    {
-        return '/' . $this->laravel['config']->get('stubs.files.routes', 'Routes/api.php');
+        return '/' . $this->laravel['config']->get('stubs.files.routes', 'Http/routes.php');
     }
 
     public function getDefaultNamespace() : string

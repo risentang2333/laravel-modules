@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace Risentang\Modules\Commands;
 
 use Illuminate\Console\Command;
-use Nwidart\Modules\Module;
-use Nwidart\Modules\Publishing\AssetPublisher;
+use Risentang\Modules\Module;
+use Risentang\Modules\Publishing\AssetPublisher;
 use Symfony\Component\Console\Input\InputArgument;
 
 class PublishCommand extends Command
@@ -42,7 +42,7 @@ class PublishCommand extends Command
      */
     public function publishAll()
     {
-        foreach ($this->laravel['modules']->allEnabled() as $module) {
+        foreach ($this->laravel['modules']->enabled() as $module) {
             $this->publish($module);
         }
     }

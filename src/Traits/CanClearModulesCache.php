@@ -1,6 +1,6 @@
 <?php
 
-namespace Nwidart\Modules\Traits;
+namespace Risentang\Modules\Traits;
 
 trait CanClearModulesCache
 {

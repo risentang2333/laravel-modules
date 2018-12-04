@@ -1,6 +1,6 @@
 <?php
 
-namespace Nwidart\Modules\Providers;
+namespace Risentang\Modules\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

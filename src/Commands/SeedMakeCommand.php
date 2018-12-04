@@ -1,12 +1,12 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace Risentang\Modules\Commands;
 
 use Illuminate\Support\Str;
-use Nwidart\Modules\Support\Config\GenerateConfigReader;
-use Nwidart\Modules\Support\Stub;
-use Nwidart\Modules\Traits\CanClearModulesCache;
-use Nwidart\Modules\Traits\ModuleCommandTrait;
+use Risentang\Modules\Support\Config\GenerateConfigReader;
+use Risentang\Modules\Support\Stub;
+use Risentang\Modules\Traits\CanClearModulesCache;
+use Risentang\Modules\Traits\ModuleCommandTrait;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -99,15 +99,5 @@ class SeedMakeCommand extends GeneratorCommand
         $end = $this->option('master') ? 'DatabaseSeeder' : 'TableSeeder';
 
         return Str::studly($this->argument('name')) . $end;
-    }
-
-    /**
-     * Get default namespace.
-     *
-     * @return string
-     */
-    public function getDefaultNamespace() : string
-    {
-        return $this->laravel['modules']->config('paths.generator.seeder.path', 'Database/Seeders');
     }
 }

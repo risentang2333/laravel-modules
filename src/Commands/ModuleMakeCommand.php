@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace Risentang\Modules\Commands;
 
 use Illuminate\Console\Command;
-use Nwidart\Modules\Generators\ModuleGenerator;
+use Risentang\Modules\Generators\ModuleGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -58,7 +58,7 @@ class ModuleMakeCommand extends Command
     {
         return [
             ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain module (without some resources).'],
-            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when the module already exists.'],
+            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when module already exist.'],
         ];
     }
 }

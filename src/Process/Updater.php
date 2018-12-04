@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules\Process;
+namespace Risentang\Modules\Process;
 
-use Nwidart\Modules\Module;
+use Risentang\Modules\Module;
 
 class Updater extends Runner
 {

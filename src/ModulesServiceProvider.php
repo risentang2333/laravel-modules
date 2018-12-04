@@ -1,11 +1,11 @@
 <?php
 
-namespace Nwidart\Modules;
+namespace Risentang\Modules;
 
 use Illuminate\Support\ServiceProvider;
-use Nwidart\Modules\Providers\BootstrapServiceProvider;
-use Nwidart\Modules\Providers\ConsoleServiceProvider;
-use Nwidart\Modules\Providers\ContractsServiceProvider;
+use Risentang\Modules\Providers\BootstrapServiceProvider;
+use Risentang\Modules\Providers\ConsoleServiceProvider;
+use Risentang\Modules\Providers\ContractsServiceProvider;
 
 abstract class ModulesServiceProvider extends ServiceProvider
 {
@@ -63,7 +63,7 @@ abstract class ModulesServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [Contracts\RepositoryInterface::class, 'modules'];
+        return ['modules'];
     }
 
     /**

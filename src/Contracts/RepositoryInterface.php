@@ -1,6 +1,6 @@
 <?php
 
-namespace Nwidart\Modules\Contracts;
+namespace Risentang\Modules\Contracts;
 
 interface RepositoryInterface
 {
@@ -28,7 +28,7 @@ interface RepositoryInterface
     /**
      * Get modules as modules collection instance.
      *
-     * @return \Nwidart\Modules\Collection
+     * @return \Risentang\Modules\Collection
      */
     public function toCollection();
 
@@ -44,14 +44,14 @@ interface RepositoryInterface
      *
      * @return mixed
      */
-    public function allEnabled();
+    public function enabled();
 
     /**
      * Get list of disabled modules.
      *
      * @return mixed
      */
-    public function allDisabled();
+    public function disabled();
 
     /**
      * Get count from all modules.
@@ -62,10 +62,10 @@ interface RepositoryInterface
 
     /**
      * Get all ordered modules.
-     * @param string $direction
+     *
      * @return mixed
      */
-    public function getOrdered($direction = 'asc');
+    public function getOrdered();
 
     /**
      * Get modules by the given status.
@@ -93,11 +93,4 @@ interface RepositoryInterface
      * @return mixed
      */
     public function findOrFail($name);
-
-    public function getModulePath($moduleName);
-
-    /**
-     * @return \Illuminate\Filesystem\Filesystem
-     */
-    public function getFiles();
 }

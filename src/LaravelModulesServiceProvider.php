@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules;
+namespace Risentang\Modules;
 
-use Nwidart\Modules\Support\Stub;
+use Risentang\Modules\Support\Stub;
 
 class LaravelModulesServiceProvider extends ModulesServiceProvider
 {
@@ -44,11 +44,10 @@ class LaravelModulesServiceProvider extends ModulesServiceProvider
      */
     protected function registerServices()
     {
-        $this->app->singleton(Contracts\RepositoryInterface::class, function ($app) {
+        $this->app->singleton('modules', function ($app) {
             $path = $app['config']->get('modules.paths.modules');
 
-            return new Laravel\LaravelFileRepository($app, $path);
+            return new \Risentang\Modules\Laravel\Repository($app, $path);
         });
-        $this->app->alias(Contracts\RepositoryInterface::class, 'modules');
     }
 }

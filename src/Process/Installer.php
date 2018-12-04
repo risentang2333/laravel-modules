@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules\Process;
+namespace Risentang\Modules\Process;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Nwidart\Modules\Contracts\RepositoryInterface;
+use Risentang\Modules\Repository;
 use Symfony\Component\Process\Process;
 
 class Installer
@@ -25,7 +25,8 @@ class Installer
 
     /**
      * The module repository instance.
-     * @var \Nwidart\Modules\Contracts\RepositoryInterface
+     *
+     * @var \Risentang\Modules\Repository
      */
     protected $repository;
 
@@ -49,14 +50,6 @@ class Installer
      * @var int
      */
     protected $timeout = 3360;
-    /**
-     * @var null|string
-     */
-    private $type;
-    /**
-     * @var bool
-     */
-    private $tree;
 
     /**
      * The constructor.
@@ -90,10 +83,12 @@ class Installer
 
     /**
      * Set the module repository instance.
-     * @param \Nwidart\Modules\Contracts\RepositoryInterface $repository
+     *
+     * @param \Risentang\Modules\Repository $repository
+     *
      * @return $this
      */
-    public function setRepository(RepositoryInterface $repository)
+    public function setRepository(Repository $repository)
     {
         $this->repository = $repository;
 

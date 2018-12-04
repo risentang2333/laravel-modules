@@ -1,6 +1,6 @@
 <?php
 
-namespace Nwidart\Modules\Contracts;
+namespace Risentang\Modules\Contracts;
 
 interface PublisherInterface
 {

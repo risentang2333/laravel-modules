@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules\Publishing;
+namespace Risentang\Modules\Publishing;
 
-use Nwidart\Modules\Support\Config\GenerateConfigReader;
+use Risentang\Modules\Support\Config\GenerateConfigReader;
 
 class AssetPublisher extends Publisher
 {

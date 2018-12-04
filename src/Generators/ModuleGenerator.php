@@ -1,14 +1,14 @@
 <?php
 
-namespace Nwidart\Modules\Generators;
+namespace Risentang\Modules\Generators;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Console\Command as Console;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use Nwidart\Modules\FileRepository;
-use Nwidart\Modules\Support\Config\GenerateConfigReader;
-use Nwidart\Modules\Support\Stub;
+use Risentang\Modules\Repository;
+use Risentang\Modules\Support\Config\GenerateConfigReader;
+use Risentang\Modules\Support\Stub;
 
 class ModuleGenerator extends Generator
 {
@@ -43,7 +43,7 @@ class ModuleGenerator extends Generator
     /**
      * The pingpong module instance.
      *
-     * @var \Nwidart\Modules\Module
+     * @var Module
      */
     protected $module;
 
@@ -63,15 +63,16 @@ class ModuleGenerator extends Generator
 
     /**
      * The constructor.
+     *
      * @param $name
-     * @param FileRepository $module
+     * @param Repository $module
      * @param Config     $config
      * @param Filesystem $filesystem
      * @param Console    $console
      */
     public function __construct(
         $name,
-        FileRepository $module = null,
+        Repository $module = null,
         Config $config = null,
         Filesystem $filesystem = null,
         Console $console = null
@@ -180,9 +181,9 @@ class ModuleGenerator extends Generator
     }
 
     /**
-     * Get the module instance.
+     * Get the pingpong module instance.
      *
-     * @return \Nwidart\Modules\Module
+     * @return Module
      */
     public function getModule()
     {
@@ -334,10 +335,6 @@ class ModuleGenerator extends Generator
             'name' => $this->getName() . 'ServiceProvider',
             'module' => $this->getName(),
             '--master' => true,
-        ]);
-
-        $this->console->call('module:route-provider', [
-            'module' => $this->getName(),
         ]);
 
         $this->console->call('module:make-controller', [
@@ -493,5 +490,10 @@ class ModuleGenerator extends Generator
     protected function getAuthorEmailReplacement()
     {
         return $this->module->config('composer.author.email');
+    }
+
+    protected function getRoutesLocationReplacement()
+    {
+        return '/' . $this->module->config('stubs.files.routes');
     }
 }

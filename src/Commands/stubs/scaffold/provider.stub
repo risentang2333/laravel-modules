@@ -23,7 +23,6 @@ class $CLASS$ extends ServiceProvider
     {
         $this->registerTranslations();
         $this->registerConfig();
-        $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../$MIGRATIONS_PATH$');
     }
@@ -35,7 +34,7 @@ class $CLASS$ extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(RouteServiceProvider::class);
+        //
     }
 
     /**
@@ -51,26 +50,6 @@ class $CLASS$ extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../$PATH_CONFIG$/config.php', '$LOWER_NAME$'
         );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = resource_path('views/modules/$LOWER_NAME$');
-
-        $sourcePath = __DIR__.'/../$PATH_VIEWS$';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ],'views');
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/$LOWER_NAME$';
-        }, \Config::get('view.paths')), [$sourcePath]), '$LOWER_NAME$');
     }
 
     /**
@@ -91,8 +70,7 @@ class $CLASS$ extends ServiceProvider
 
     /**
      * Register an additional directory of factories.
-     * 
-     * @return void
+     * @source https://github.com/sebastiaanluca/laravel-resource-flow/blob/develop/src/Modules/ModuleServiceProvider.php#L66
      */
     public function registerFactories()
     {

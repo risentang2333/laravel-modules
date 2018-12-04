@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules;
+namespace Risentang\Modules;
 
-use Nwidart\Modules\Support\Stub;
+use Risentang\Modules\Support\Stub;
 
 class LumenModulesServiceProvider extends ModulesServiceProvider
 {
@@ -42,11 +42,10 @@ class LumenModulesServiceProvider extends ModulesServiceProvider
      */
     protected function registerServices()
     {
-        $this->app->singleton(Contracts\RepositoryInterface::class, function ($app) {
+        $this->app->singleton('modules', function ($app) {
             $path = $app['config']->get('modules.paths.modules');
 
-            return new Lumen\LumenFileRepository($app, $path);
+            return new \Risentang\Modules\Lumen\Repository($app, $path);
         });
-        $this->app->alias(Contracts\RepositoryInterface::class, 'modules');
     }
 }

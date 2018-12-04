@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules\Publishing;
+namespace Risentang\Modules\Publishing;
 
-use Nwidart\Modules\Migrations\Migrator;
+use Risentang\Modules\Migrations\Migrator;
 
 class MigrationPublisher extends AssetPublisher
 {

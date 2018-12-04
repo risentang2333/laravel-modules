@@ -1,11 +1,11 @@
 <?php
 
-namespace Nwidart\Modules\Publishing;
+namespace Risentang\Modules\Publishing;
 
 use Illuminate\Console\Command;
-use Nwidart\Modules\Contracts\PublisherInterface;
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Module;
+use Risentang\Modules\Contracts\PublisherInterface;
+use Risentang\Modules\Module;
+use Risentang\Modules\Repository;
 
 abstract class Publisher implements PublisherInterface
 {
@@ -18,7 +18,8 @@ abstract class Publisher implements PublisherInterface
 
     /**
      * The modules repository instance.
-     * @var RepositoryInterface
+     *
+     * @var \Risentang\Modules\Repository
      */
     protected $repository;
 
@@ -87,7 +88,7 @@ abstract class Publisher implements PublisherInterface
     /**
      * Get module instance.
      *
-     * @return \Nwidart\Modules\Module
+     * @return \Risentang\Modules\Module
      */
     public function getModule()
     {
@@ -96,10 +97,12 @@ abstract class Publisher implements PublisherInterface
 
     /**
      * Set modules repository instance.
-     * @param RepositoryInterface $repository
+     *
+     * @param \Risentang\Modules\Repository $repository
+     *
      * @return $this
      */
-    public function setRepository(RepositoryInterface $repository)
+    public function setRepository(Repository $repository)
     {
         $this->repository = $repository;
 
@@ -109,7 +112,7 @@ abstract class Publisher implements PublisherInterface
     /**
      * Get modules repository instance.
      *
-     * @return RepositoryInterface
+     * @return \Risentang\Modules\Repository
      */
     public function getRepository()
     {

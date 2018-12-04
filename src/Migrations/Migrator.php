@@ -1,18 +1,18 @@
 <?php
 
-namespace Nwidart\Modules\Migrations;
+namespace Risentang\Modules\Migrations;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Collection;
-use Nwidart\Modules\Module;
-use Nwidart\Modules\Support\Config\GenerateConfigReader;
+use Risentang\Modules\Module;
+use Risentang\Modules\Support\Config\GenerateConfigReader;
 
 class Migrator
 {
     /**
      * Pingpong Module instance.
      *
-     * @var \Nwidart\Modules\Module
+     * @var \Risentang\Modules\Module
      */
     protected $module;
 
@@ -33,7 +33,7 @@ class Migrator
     /**
      * Create new instance.
      *
-     * @param \Nwidart\Modules\Module $module
+     * @param \Risentang\Modules\Module $module
      */
     public function __construct(Module $module)
     {

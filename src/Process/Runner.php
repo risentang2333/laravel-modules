@@ -1,19 +1,25 @@
 <?php
 
-namespace Nwidart\Modules\Process;
+namespace Risentang\Modules\Process;
 
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Contracts\RunableInterface;
+use Risentang\Modules\Contracts\RunableInterface;
+use Risentang\Modules\Repository;
 
 class Runner implements RunableInterface
 {
     /**
      * The module instance.
-     * @var RepositoryInterface
+     *
+     * @var \Risentang\Modules\Repository
      */
     protected $module;
 
-    public function __construct(RepositoryInterface $module)
+    /**
+     * The constructor.
+     *
+     * @param \Risentang\Modules\Repository $module
+     */
+    public function __construct(Repository $module)
     {
         $this->module = $module;
     }

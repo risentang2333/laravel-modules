@@ -1,25 +1,25 @@
 <?php
 
-namespace Nwidart\Modules;
+namespace Risentang\Modules;
 
 use Countable;
 use Illuminate\Container\Container;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Exceptions\InvalidAssetPath;
-use Nwidart\Modules\Exceptions\ModuleNotFoundException;
-use Nwidart\Modules\Process\Installer;
-use Nwidart\Modules\Process\Updater;
+use Risentang\Modules\Contracts\RepositoryInterface;
+use Risentang\Modules\Exceptions\InvalidAssetPath;
+use Risentang\Modules\Exceptions\ModuleNotFoundException;
+use Risentang\Modules\Process\Installer;
+use Risentang\Modules\Process\Updater;
 
-abstract class FileRepository implements RepositoryInterface, Countable
+abstract class Repository implements RepositoryInterface, Countable
 {
     use Macroable;
 
     /**
      * Application instance.
      *
-     * @var \Illuminate\Contracts\Foundation\Application|\Laravel\Lumen\Application
+     * @var Illuminate\Contracts\Foundation\Application|Laravel\Lumen\Application
      */
     protected $app;
 
@@ -69,6 +69,19 @@ abstract class FileRepository implements RepositoryInterface, Countable
     }
 
     /**
+     * Alternative method for "addPath".
+     *
+     * @param string $path
+     *
+     * @return $this
+     * @deprecated
+     */
+    public function addPath($path)
+    {
+        return $this->addLocation($path);
+    }
+
+    /**
      * Get all additional paths.
      *
      * @return array
@@ -102,11 +115,11 @@ abstract class FileRepository implements RepositoryInterface, Countable
 
     /**
      * Creates a new Module instance
-     *
+     * 
      * @param Container $app
      * @param $name
      * @param $path
-     * @return \Nwidart\Modules\Module
+     * @return \Risentang\Modules\Module
      */
     abstract protected function createModule(...$args);
 
@@ -229,7 +242,7 @@ abstract class FileRepository implements RepositoryInterface, Countable
      *
      * @return array
      */
-    public function allEnabled() : array
+    public function enabled() : array
     {
         return $this->getByStatus(1);
     }
@@ -239,7 +252,7 @@ abstract class FileRepository implements RepositoryInterface, Countable
      *
      * @return array
      */
-    public function allDisabled() : array
+    public function disabled() : array
     {
         return $this->getByStatus(0);
     }
@@ -263,7 +276,7 @@ abstract class FileRepository implements RepositoryInterface, Countable
      */
     public function getOrdered($direction = 'asc') : array
     {
-        $modules = $this->allEnabled();
+        $modules = $this->enabled();
 
         uasort($modules, function (Module $a, Module $b) use ($direction) {
             if ($a->order == $b->order) {
@@ -360,6 +373,17 @@ abstract class FileRepository implements RepositoryInterface, Countable
         }
 
         return $requirements;
+    }
+
+    /**
+     * Alternative for "find" method.
+     * @param $name
+     * @return mixed|void
+     * @deprecated
+     */
+    public function get($name)
+    {
+        return $this->find($name);
     }
 
     /**
@@ -482,11 +506,22 @@ abstract class FileRepository implements RepositoryInterface, Countable
     /**
      * Get module used for cli session.
      * @return string
-     * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+     * @throws \Risentang\Modules\Exceptions\ModuleNotFoundException
      */
     public function getUsedNow() : string
     {
         return $this->findOrFail($this->app['files']->get($this->getUsedStoragePath()));
+    }
+
+    /**
+     * Get used now.
+     *
+     * @return string
+     * @deprecated
+     */
+    public function getUsed()
+    {
+        return $this->getUsedNow();
     }
 
     /**
@@ -531,31 +566,33 @@ abstract class FileRepository implements RepositoryInterface, Countable
 
     /**
      * Determine whether the given module is activated.
+     *
      * @param string $name
+     *
      * @return bool
-     * @throws ModuleNotFoundException
      */
-    public function enabled($name) : bool
+    public function active($name) : bool
     {
-        return $this->findOrFail($name)->enabled();
+        return $this->findOrFail($name)->active();
     }
 
     /**
      * Determine whether the given module is not activated.
+     *
      * @param string $name
+     *
      * @return bool
-     * @throws ModuleNotFoundException
      */
-    public function disabled($name) : bool
+    public function notActive($name) : bool
     {
-        return !$this->enabled($name);
+        return !$this->active($name);
     }
 
     /**
      * Enabling a specific module.
      * @param string $name
      * @return void
-     * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+     * @throws \Risentang\Modules\Exceptions\ModuleNotFoundException
      */
     public function enable($name)
     {
@@ -566,7 +603,7 @@ abstract class FileRepository implements RepositoryInterface, Countable
      * Disabling a specific module.
      * @param string $name
      * @return void
-     * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+     * @throws \Risentang\Modules\Exceptions\ModuleNotFoundException
      */
     public function disable($name)
     {
@@ -577,7 +614,7 @@ abstract class FileRepository implements RepositoryInterface, Countable
      * Delete a specific module.
      * @param string $name
      * @return bool
-     * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+     * @throws \Risentang\Modules\Exceptions\ModuleNotFoundException
      */
     public function delete($name) : bool
     {
