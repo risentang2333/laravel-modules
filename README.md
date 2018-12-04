@@ -1,45 +1,37 @@
-# Laravel-Modules
+# Lumen-Modules
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/risentang/lumen-modules.svg?style=flat-square)](https://packagist.org/packages/risentang/lumen-modules)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/nWidart/lumen-modules/master.svg?style=flat-square)](https://travis-ci.org/nWidart/lumen-modules)
-[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/nWidart/lumen-modules.svg?maxAge=86400&style=flat-square)](https://scrutinizer-ci.com/g/nWidart/lumen-modules/?branch=master)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/25320a08-8af4-475e-a23e-3321f55bf8d2.svg?style=flat-square)](https://insight.sensiolabs.com/projects/25320a08-8af4-475e-a23e-3321f55bf8d2)
-[![Quality Score](https://img.shields.io/scrutinizer/g/nWidart/lumen-modules.svg?style=flat-square)](https://scrutinizer-ci.com/g/nWidart/lumen-modules)
-[![Total Downloads](https://img.shields.io/packagist/dt/risentang/lumen-modules.svg?style=flat-square)](https://packagist.org/packages/risentang/lumen-modules)
+本项目修改自 [nWidart/laravel-modules](https://github.com/nWidart/laravel-modules).
 
-| **Laravel**  |  **lumen-modules** |
-|---|---|
-| 5.4  | ^1.0  |
-| 5.5  | ^2.0  |
+注：非常感谢 [nWidart/laravel-modules](https://github.com/nWidart/laravel-modules)提供的laravel模块化开发引擎，它非常清晰的分离开项目中每个业务模块的文件夹结构。
+但由于lumen5.5的底层结构与laravel有很大不同，虽然nwidart本人为我们提供了对lumen的支持，但很遗憾，也许对lumen5.5版本框架来说，还是有一些bug，导致无法使用。通过我的研究，为大家提供一套基于lumen5.5版本的模块化开发引擎。
 
-`risentang/lumen-modules` is a Laravel package which created to manage your large Laravel app using modules. Module is like a Laravel package, it has some views, controllers or models. This package is supported and tested in Laravel 5.
+## 安装
 
-This package is a re-published, re-organised and maintained version of [pingpong/modules](https://github.com/pingpong-labs/modules), which isn't maintained anymore. This package is used in [AsgardCMS](https://asgardcms.com/).
-
-With one big added bonus that the original package didn't have: **tests**.
-
-Find out why you should use this package in the article: [Writing modular applications with lumen-modules](https://nicolaswidart.com/blog/writing-modular-applications-with-lumen-modules).
-
-## Install
-
-To install through Composer, by run the following command:
+首先，您需要安装composer，安装完成后，执行以下命令
 
 ``` bash
 composer require risentang/lumen-modules
 ```
-
-The package will automatically register a service provider and alias.
-
-Optionally, publish the package's configuration file by running:
-
-``` bash
-php artisan vendor:publish --provider="Risentang\Modules\LaravelModulesServiceProvider"
+或者在composer.json的request中添加：
+``` json
+  "require": {
+    "risentang/lumen-modules": "^1.0"
+  }
 ```
-
-### Autoloading
+运行
+``` bash
+composer update
+```
+然后在[bootstrap/app.php]下添加
+``` bash
+$app->configure('modules');
+$app->register(\Risentang\Modules\LumenModulesServiceProvider::class);
+```
+在项目根目录中创建[config]文件夹，再将[vender/risentang/lumen-modules/config/config.php]复制到[config]中，改名为[module.php]
+### 自动加载
 
 By default the module classes are not loaded automatically. You can autoload your modules using `psr-4`. For example:
+由于默认module类没有加载进框架，你需要在autoload中`psr-4`添加如下配置
 
 ``` json
 {
@@ -51,24 +43,14 @@ By default the module classes are not loaded automatically. You can autoload you
   }
 }
 ```
+并运行
+``` bash
+composer dump-autoload
+```
+最后通过artisan指令来生成开发模块
+``` bash
+php artisan module:make demo
+```
+## 官方文档
 
-**Tip: don't forget to run `composer dump-autoload` afterwards.**
-
-## Documentation
-
-You'll find installation instructions and full documentation on [https://risentang.com/lumen-modules/](https://risentang.com/lumen-modules/).
-
-## Credits
-
-- [Nicolas Widart](https://github.com/risentang)
-- [gravitano](https://github.com/gravitano)
-- [All Contributors](../../contributors)
-
-## About Nicolas Widart
-
-Nicolas Widart is a freelance web developer specialising on the Laravel framework. View all my packages [on my website](https://nicolaswidart.com/projects).
-
-
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+如果想了解更多请登陆 [https://nwidart.com/laravel-modules/](https://nwidart.com/laravel-modules/)查看文档内容.

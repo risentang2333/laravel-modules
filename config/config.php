@@ -141,8 +141,8 @@ return [
     'composer' => [
         'vendor' => 'risentang',
         'author' => [
-            'name' => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name' => 'risentang',
+            'email' => 'magicheart@163.com',
         ],
     ],
     /*
